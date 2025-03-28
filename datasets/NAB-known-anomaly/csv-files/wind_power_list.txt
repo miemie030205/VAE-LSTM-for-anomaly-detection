@@ -1,0 +1,10 @@
+env_temp	环境温度
+hub_speed	风轮转速
+wind_speed	60s平均风速
+f_temp	主轴前轴承温度
+b_temp	主轴后轴承温度
+power	发电机有功功率
+grid_power	电网有功功率
+fb_diff	前后轴承温差
+fe_diff	前轴承环境温升
+be_diff	后轴承环境温升
