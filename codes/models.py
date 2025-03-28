@@ -258,7 +258,7 @@ class VAEmodel(BaseModel):
 				decoded_5 = tf.reshape(decoded_5, [-1, 48, 1, 16])
 				print("decoded_5 is: {}".format(decoded_5))
 				decoded = tf.layers.conv2d(inputs=decoded_5,
-										   filters=10,
+										   filters=37,
 										   kernel_size=(5, self.config['n_channel']),
 										   strides=1,
 										   padding='same',
