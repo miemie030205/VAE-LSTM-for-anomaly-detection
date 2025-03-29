@@ -14,7 +14,9 @@ class DataGenerator(BaseDataGenerator):
 		data_dir = '../datasets/NAB-known-anomaly/'
 		data = np.load(data_dir + dataset + '.npz')
 
+
 		# normalise the dataset by training set mean and std
+
 		train_m = data['train_m']
 		train_std = data['train_std']
 		readings_normalised = (data['readings'] - train_m) / train_std
@@ -44,6 +46,7 @@ class DataGenerator(BaseDataGenerator):
 		# slice training set into rolling windows
 		n_train_sample = len(data['training'])
 		n_train_vae = n_train_sample - self.config['l_win'] + 1
+		self.config['n_channel'] = data['training'].shape[-1]
 		rolling_windows = np.zeros((n_train_vae, self.config['l_win'], self.config['n_channel']))
 		for i in range(n_train_sample - self.config['l_win'] + 1):
 			rolling_windows[i] = data['training'][i:i + self.config['l_win']]
