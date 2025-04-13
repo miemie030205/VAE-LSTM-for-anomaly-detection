@@ -258,14 +258,16 @@ class VAEmodel(BaseModel):
 				decoded_5 = tf.reshape(decoded_5, [-1, 48, 1, 16])
 				print("decoded_5 is: {}".format(decoded_5))
 				decoded = tf.layers.conv2d(inputs=decoded_5,
-										   filters=25,
+										   filters=self.config['n_channel'],
 										   kernel_size=(5, self.config['n_channel']),
 										   strides=1,
 										   padding='same',
 										   activation=None,
 										   kernel_initializer=init)
 				print("decoded_6 is: {}".format(decoded))
-				self.decoded = tf.reshape(decoded, [-1, self.config['l_win'], self.config['n_channel']])
+				decoded = tf.squeeze(decoded, axis=2)
+				batch_size = tf.shape(self.original_signal)[0]
+				self.decoded = tf.reshape(decoded, [batch_size, self.config['l_win'], self.config['n_channel']])
 			elif self.config['l_win'] == 144:
 				decoded_2 = tf.layers.conv2d(decoded_1,
 											 filters=32 * 27,
